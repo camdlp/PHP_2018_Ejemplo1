@@ -7,11 +7,14 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>PRUEBA DE PHP CON BOOTSTRAP</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-color: gray">
-        <div class="container">       
+
+
+        <div class="container" id="principal">       
             <div class="row">
                 <div class="col-12">
                     <h2 class="text-center" style="color: lightgrey">Ejemplo inicio sesión</h2>
@@ -24,18 +27,16 @@ and open the template in the editor.
                 </div>
                 <div class="col-4">
                     <br/><br/>
-                    <form action="index2.php">
-                        <input id="cajaNombre" class="form-control" name="usuario_nombre" type="text" placeholder="Usuario" required="required">
-                        <br/>
-                        <input id="cajaPassword" class="form-control" type="password" placeholder="Contraseña">
-                        <br/>
-                        <button id="boton1" class="btn btn-primary btn-block" type="submit">Primary</button>
-                        <br/>
-                        <p>
-                            Year (yyyy-mm-dd):
-                            <input data-validation="date" data-validation-format="yyyy-mm-dd" class="form-control">
-                        </p>
-                    </form>
+                    <!--<?php
+                    echo '<input id="cajaNombre" class="form-control" name="usuario_nombre" type="text" placeholder="' . $usuario_mysql . '" required="required">';
+                    ?>-->
+                    <input id="cajaNombre" class="form-control" name="usuario_nombre" type="text" placeholder="Usuario" required="required">
+                    <br/>
+                    <input id="cajaPassword" class="form-control" type="password" placeholder="Contraseña">
+                    <br/>
+                    <button id="boton1" class="btn btn-primary btn-block" type="submit">Entrar</button>
+                    <br/>
+
                 </div>
                 <div class="col-4">
 
@@ -57,7 +58,16 @@ and open the template in the editor.
             });
 
             $('#boton1').click(function () {
-                $('#cajaNombre').show(200);
+                //leo el contenido de las cajas de nombre y contraseña.
+                var _cajaNombre = $('#cajaNombre').val();
+                var _cajaPassword = $('#cajaPassword').val();
+                
+                $('#principal').load('login.php', {
+                    cajaNombre : _cajaNombre,
+                    cajaPassword : _cajaPassword
+                });
+                
+                
             });
         </script>
 
